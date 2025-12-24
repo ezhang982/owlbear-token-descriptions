@@ -1,0 +1,16 @@
+{
+  "name": "TokenDescriptions",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "author": "EZGhost",
+  "homepage_url": "https://extensions.owlbear.rodeo/initiative-tracker",
+  "icon": "/icon.svg",
+  "description": "Add descriptions to tokens for notes and/or make them displayable.",
+  "action": {
+    "title": "TokenDescriptions",
+    "icon": "/icon.svg",
+    "popover": "/",
+    "height": 129,
+    "width": 250
+  }
+}
