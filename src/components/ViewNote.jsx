@@ -8,7 +8,7 @@ export default function ViewNote() {
 
   useEffect(() => {
     OBR.onReady(async () => {
-      // 1. Get the Token ID from the URL (passed from main.jsx)
+      // Get Token ID from the URL (passed from main.jsx)
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       const tokenId = urlParams.get("id");
@@ -18,7 +18,7 @@ export default function ViewNote() {
         return;
       }
 
-      // 2. Fetch the Token
+      // Fetch Token
       const items = await OBR.scene.items.getItems([tokenId]);
       const token = items[0];
 
@@ -26,8 +26,7 @@ export default function ViewNote() {
         const data = token.metadata[`${ID}/metadata`] || {};
         const publicText = data[METADATA_KEY.PUBLIC_DESC];
 
-        // 3. Security Check: Is the description actually meant to be seen?
-        // (We double-check here just in case)
+        // Security Check: Description viewable?
         if (publicText && data[METADATA_KEY.IS_REVEALED]) {
           setDescription(publicText);
           setStatus("Ready");

@@ -9,12 +9,11 @@ export default function EditNote() {
   const [selectedTokenId, setSelectedTokenId] = useState(null);
   const [status, setStatus] = useState("Loading...");
 
-  // 1. LOAD DATA on mount
+  // LOAD DATA on mount
   useEffect(() => {
-    // 1. Wait for OBR to be fully ready before doing anything
     OBR.onReady(async () => {
       try {
-        // 2. Read the ID from the URL set in main.jsx
+        // Read ID from URL set in main.jsx
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const tokenId = urlParams.get("id");
@@ -27,7 +26,7 @@ export default function EditNote() {
 
         setSelectedTokenId(tokenId);
 
-        // 3. Fetch the specific token
+        // Fetch specific token
         const items = await OBR.scene.items.getItems([tokenId]);
         const token = items[0];
 
@@ -37,7 +36,7 @@ export default function EditNote() {
           setDescription(data[METADATA_KEY.PUBLIC_DESC] || "");
           setGmNotes(data[METADATA_KEY.GM_NOTES] || "");
           setIsRevealed(data[METADATA_KEY.IS_REVEALED] || false);
-          setStatus("Ready"); // This unlocks the button!
+          setStatus("Ready");
         } else {
           setStatus("Error: Token not found in scene.");
         }
@@ -48,21 +47,21 @@ export default function EditNote() {
     });
   }, []);
 
-  // 2. SAVE DATA function
+  // SAVE DATA
   const handleSave = async () => {
     if (!selectedTokenId) return;
 
     await OBR.scene.items.updateItems(
-      [selectedTokenId], // The IDs to update
+      [selectedTokenId], // IDs to update
       (items) => {
-        // Loop through the items (there's only one here)
+        // Loop through the items (only one here)
         for (let item of items) {
-          // Create the metadata object if it doesn't exist
+          // Create metadata object if it doesn't exist
           if (!item.metadata[`${ID}/metadata`]) {
             item.metadata[`${ID}/metadata`] = {};
           }
 
-          // Update the specific fields
+          // Update specific fields
           item.metadata[`${ID}/metadata`][METADATA_KEY.PUBLIC_DESC] = description;
           item.metadata[`${ID}/metadata`][METADATA_KEY.GM_NOTES] = gmNotes;
           item.metadata[`${ID}/metadata`][METADATA_KEY.IS_REVEALED] = isRevealed;
@@ -77,11 +76,11 @@ export default function EditNote() {
   const handleBroadcast = async () => {
     if (!selectedTokenId) return;
 
-    // 1. Ensure it is revealed first (Good UX!)
+    // Ensure revealed first
     if (!isRevealed) {
         // If it was hidden, reveal it locally and save immediately
         setIsRevealed(true);
-        // We perform a quick mini-save to ensure the token is updated
+        // Perform a quick mini-save to ensure token updated
         await OBR.scene.items.updateItems([selectedTokenId], (items) => {
              for (let item of items) {
                 if (!item.metadata[`${ID}/metadata`]) item.metadata[`${ID}/metadata`] = {};
@@ -90,10 +89,10 @@ export default function EditNote() {
         });
     }
 
-    // 2. Send the signal!
+    // Send the signal
     OBR.broadcast.sendMessage(COMMS_ID, { tokenId: selectedTokenId });
     
-    // Feedback to the DM
+    // Feedback to the DM/broadcaster
     setStatus("Sent to players!");
     setTimeout(() => setStatus("Ready"), 2000);
   };

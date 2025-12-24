@@ -12,7 +12,9 @@ There is a small check box for allowing others to view your public description. 
 
 There is one more option in the Edit Notes window, at the very bottom is a button saying "Show Everyone". When you click that, it will force everyone else in the room to essentially "View Description" for that token. This is a way to broadcast the description for everyone when you want them to see it. 
 
-One way that I use this tool for is to make a map interactable in a way by strategically placing down tokens with descriptions for each relevant area. 
+One way that I use this tool for is to make a map interactable in a way by strategically placing down tokens with descriptions for each relevant area.
+
+Extension Install Link: https://owlbear-token-descriptions.vercel.app/manifest.json
 
 ## Attributions:
 
