@@ -1,16 +1,21 @@
-# React + Vite
+# Owlbear Rodeo Token Descriptions Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hello! This is my first project in developing a third-party extension for the VTT Owlbear Rodeo.
 
-Currently, two official plugins are available:
+With this extension, you gain the ability to add descriptions to tokens and allow them to be visible to other players in the same room. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ultimately, this is a tool designed for GMs, allowing them to add descriptions to tokens for notes or convenience. However, players with permissions will be able to add descriptions to their own tokens.
 
-## React Compiler
+If you have the permissions (GM's get access to everything), when you click on a token in its Context Menu there will be an option called "Edit Notes". When you click on that, a popover will appear that is the interface to add descriptions. There are 2 boxes, one for public descriptions and one for private notes. You write as you please to each box. Ensure that you click on the Save button below to save your writing.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+There is a small check box for allowing others to view your public description. By checking that box, a new option will appear in the token's Context Menu called "View Description" (others can see it too), and when you click on it a new popover will display with the Public Description of the token. Private Notes will never show.
 
-## Expanding the ESLint configuration
+There is one more option in the Edit Notes window, at the very bottom is a button saying "Show Everyone". When you click that, it will force everyone else in the room to essentially "View Description" for that token. This is a way to broadcast the description for everyone when you want them to see it. 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+One way that I use this tool for is to make a map interactable in a way by strategically placing down tokens with descriptions for each relevant area. 
+
+## Attributions:
+
+"Edit Notes" Icon - <a href="https://www.flaticon.com/free-icons/document" title="document icons">Document icons created by Freepik - Flaticon</a>
+
+"View Description" Icon - <a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Freepik - Flaticon</a>
